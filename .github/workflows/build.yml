@@ -14,18 +14,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        run: make --version
-        # uses: actions/checkout@v2
-        # with:
-        #   # to-fetch
-        #   fetch-depth: 0
+        uses: actions/checkout@v2
+        with:
+          # to-fetch
+          fetch-depth: 0
       
-      # - name: node
-      #   uses: actions/setup-node
-      #   with:
-      #     node-version: 12
-      #   run: npm i lerna -g
+      - name: node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12
+      - name: lerna
+        run: npm i lerna -g
 
-      # - name: bootstrap
+      - name: bootstrap
+        run: make full-rebuild
         
 

@@ -1,0 +1,31 @@
+#
+# Pipeline for build, lint and run unit tests.
+#
+
+name: build
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        run: make --version
+        # uses: actions/checkout@v2
+        # with:
+        #   # to-fetch
+        #   fetch-depth: 0
+      
+      # - name: node
+      #   uses: actions/setup-node
+      #   with:
+      #     node-version: 12
+      #   run: npm i lerna -g
+
+      # - name: bootstrap
+        
+

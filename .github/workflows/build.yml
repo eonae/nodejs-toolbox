@@ -16,9 +16,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
         with:
-          # to-fetch
           fetch-depth: 0
-      
+
+      - name: configure-git
+        run: git config user.email "eonae.white@gmail.com" && git config user.name "ci"
+
       - name: node
         uses: actions/setup-node@v2
         with:
@@ -28,5 +30,6 @@ jobs:
 
       - name: bootstrap
         run: make full-rebuild
-        
 
+      - name: bump
+        run: lerna version --conventional-commits --yes

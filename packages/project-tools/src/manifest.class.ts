@@ -1,6 +1,6 @@
 import { join, isAbsolute } from 'path';
 import { existsSync } from 'fs';
-import { readObj, saveObj } from '@libs/common';
+import { readObj, saveObj } from '@eonae/common';
 import { ManifestContent } from './manifest-content.interface';
 
 export class Manifest {

@@ -3,7 +3,7 @@
 import Ajv from 'ajv';
 
 import { isAbsolute, join } from 'path';
-import { readObj } from '@libs/common';
+import { readObj } from '@eonae/common';
 import { Config } from '../config.class';
 
 export class Schema<T = unknown> {

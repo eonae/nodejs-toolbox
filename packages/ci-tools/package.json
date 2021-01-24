@@ -17,7 +17,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@libs/common": "^2.3.6",
+    "@eonae/common": "^0.1.0",
     "@eonae/semantic-version": "^0.1.0",
     "@eonae/project-tools": "^0.1.0",
     "conventional-recommended-bump": "6.1.0",

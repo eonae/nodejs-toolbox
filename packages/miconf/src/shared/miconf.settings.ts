@@ -1,5 +1,5 @@
 import { join, isAbsolute } from 'path';
-import { readObj } from '@libs/common';
+import { readObj } from '@eonae/common';
 import { SemanticVersion } from '@eonae/semantic-version';
 
 export class MiConfSettings {

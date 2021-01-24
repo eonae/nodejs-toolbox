@@ -7,7 +7,7 @@
 import cli from 'caporal';
 
 import { join } from 'path';
-import { Manifest } from '@eonae/project';
+import { Manifest } from '@eonae/project-tools';
 import { bump } from './commands';
 import { tags } from './commands/tags';
 

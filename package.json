@@ -1,7 +1,10 @@
 {
-  "name": "eonae-tools",
+  "name": "nodejs-toolbox",
   "version": "0.1.0",
   "description": "Multifunctional toolbox",
+  "repository": {
+    "url": "https://github.com/eonae/nodejs-toolbox.git"
+  },
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
     "clean": "lerna run clean",

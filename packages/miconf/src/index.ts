@@ -6,7 +6,7 @@
 import { join } from 'path';
 import cli from 'caporal';
 
-import { Manifest } from '@eonae/project';
+import { Manifest } from '@eonae/project-tools';
 import { migrate, validate } from './commands';
 
 const main = async () => {

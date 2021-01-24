@@ -1,5 +1,5 @@
 {
-  "name": "@eonae/project",
+  "name": "@eonae/project-tools",
   "version": "0.1.0",
   "description": "CLI",
   "main": "dist/index.js",

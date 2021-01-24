@@ -2,8 +2,8 @@ import { promisify } from 'util';
 
 import crp from 'conventional-recommended-bump';
 import simplegit from 'simple-git/promise';
-import { Manifest } from '../../../../project-tools/dist';
 import { Diff, Section, SemanticVersion } from '@eonae/semantic-version';
+import { Manifest } from '@eonae/project-tools';
 import { BumpOptions, CaporalLogger, PrimaryOptions } from './types';
 import { diff, isGreaterThan } from './diff.functions';
 

@@ -1,0 +1,32 @@
+{
+  "name": "eonae-tools",
+  "version": "0.1.0",
+  "description": "Multifunctional toolbox",
+  "scripts": {
+    "bootstrap": "lerna bootstrap --hoist",
+    "clean": "lerna run clean",
+    "build": "lerna run build",
+    "pub": "lerna publish",
+    "lint": "eslint packages/**/*.ts --fix",
+    "test": "jest",
+    "test:cov": "jest --coverage"
+  },
+  "author": "eonae",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/config-conventional": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "commitlint": "^11.0.0",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-typescript": "^11.0.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.8",
+    "jest": "^26.5.0",
+    "lerna": "^3.22.1",
+    "ts-jest": "^26.4.1",
+    "ts-node": "^9.1.0",
+    "typescript": "^4.1.2"
+  }
+}

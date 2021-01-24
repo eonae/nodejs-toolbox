@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "required": ["version", "hostname"],
+  "properties": {
+    "version": {
+      "title": "version",
+      "type": "string",
+      "pattern": "^\\d{1,5}.\\d{1,5}.\\d{1,5}($|.[a-z]{1,10}.\\d{1,5}$)"
+    },
+    "name": {
+      "title": "hostname",
+      "type": "string",
+      "maxLength": 30,
+      "minLength": 5
+    }
+  }
+}

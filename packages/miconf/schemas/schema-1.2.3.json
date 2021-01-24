@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "required": ["version"],
+  "properties": {
+    "version": {
+      "title": "version",
+      "type": "string",
+      "pattern": "^\\d{1,5}.\\d{1,5}.\\d{1,5}($|.[a-z]{1,10}.\\d{1,5}$)"
+    }
+  }
+}

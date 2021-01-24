@@ -1,0 +1,37 @@
+{
+  "name": "@eonae/ci-tools",
+  "version": "0.1.0",
+  "description": "CLI",
+  "main": "dist/index.js",
+  "bin": {
+    "ci-tools": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "*.md"
+  ],
+  "scripts": {
+    "build": "rm -rf ./dist && npm run compile",
+    "clean": "rm -rf ./dist && rm -rf ./node_modules",
+    "compile": "tsc --project tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@libs/common": "^2.3.6",
+    "@eonae/semantic-version": "^0.1.0",
+    "@eonae/project-tools": "^0.1.0",
+    "conventional-recommended-bump": "6.1.0",
+    "simple-git": "^2.31.0",
+    "caporal": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/conventional-recommended-bump": "^6.0.0",
+    "@types/figlet": "^1.2.0",
+    "@types/flat": "^5.0.1",
+    "@types/inquirer": "^7.3.1",
+    "@types/lodash": "^4.14.165",
+    "@types/shelljs": "^0.8.8"
+  },
+  "author": "Sergey Aslanov",
+  "license": "ISC"
+}

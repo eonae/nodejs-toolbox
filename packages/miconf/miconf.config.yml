@@ -1,0 +1,11 @@
+supported:
+  - 1.2.3
+  - 1.2.4
+  - 1.2.5
+  - 1.2.6
+
+# Основываясь на списке поддерживаемых версий мы должны будем найти 4 схемы и 3 миграции.
+# Если чего-то из этого не хватает.
+
+# MigrationSet.isSufficientFor(versions.supported)
+# SchemasSet.isSufficientFor(versions.supported)

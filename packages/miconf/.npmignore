@@ -1,0 +1,6 @@
+node_modules
+src
+schemas
+migrations
+tsconfig.json
+miconf.config.yml

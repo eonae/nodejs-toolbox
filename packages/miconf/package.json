@@ -1,6 +1,6 @@
 {
   "name": "@eonae/miconf",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "CLI",
   "main": "dist/index.js",
   "bin": {
@@ -18,9 +18,9 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@eonae/common": "^0.2.0",
-    "@eonae/project-tools": "^0.2.0",
-    "@eonae/semantic-version": "^0.2.0",
+    "@eonae/common": "^0.3.0",
+    "@eonae/project-tools": "^0.3.0",
+    "@eonae/semantic-version": "^0.3.0",
     "ajv": "^7.0.3",
     "caporal": "^1.4.0",
     "lodash": "4.17.20"

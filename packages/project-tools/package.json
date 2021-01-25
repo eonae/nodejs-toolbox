@@ -1,6 +1,6 @@
 {
   "name": "@eonae/project-tools",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "CLI",
   "main": "dist/index.js",
   "files": [
@@ -15,7 +15,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@eonae/common": "^0.2.0"
+    "@eonae/common": "^0.3.0"
   },
   "author": "Sergey Aslanov",
   "license": "ISC"

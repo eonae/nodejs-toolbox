@@ -1,7 +1,7 @@
 {
   "name": "@eonae/common",
   "description": "All sorts of common functions and modules",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "main": "dist/index",
   "readmeFilename": "README.md",
   "files": [

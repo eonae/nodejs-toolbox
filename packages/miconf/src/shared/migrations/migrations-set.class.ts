@@ -13,7 +13,7 @@ const MIGRATION_FILE_PATTERN = /^migration-(\S+)(.js|.ts)$/;
 export type NeededMigration = { from: SemanticVersion, to: SemanticVersion };
 
 export const importAndInstantiate = async (fullname: string): Promise<ConfigMigration> => {
-  const Migration = (await import(fullname)).default() as Constructor<ConfigMigration>;
+  const Migration = (await import(fullname)).default as Constructor<ConfigMigration>;
   return new Migration();
 };
 
@@ -58,7 +58,9 @@ export class MigrationsSet {
       .filter(x => MIGRATION_FILE_PATTERN.test(x));
 
     const migrations = (await Promise.all(
-      migrationFiles.map(filename => importAndInstantiate(join(fulldir, filename)))
+      migrationFiles
+        .filter(filename => /.js$/.test(filename))
+        .map(filename => importAndInstantiate(join(fulldir, filename)))
     ));
     return new MigrationsSet(migrations);
   }

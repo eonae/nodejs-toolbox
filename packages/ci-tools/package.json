@@ -1,6 +1,6 @@
 {
   "name": "@eonae/ci-tools",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "CLI",
   "main": "dist/index.js",
   "bin": {
@@ -18,12 +18,12 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@eonae/common": "^0.1.0",
-    "@eonae/semantic-version": "^0.1.0",
-    "@eonae/project-tools": "^0.1.0",
+    "@eonae/common": "^0.2.0",
+    "@eonae/project-tools": "^0.2.0",
+    "@eonae/semantic-version": "^0.2.0",
+    "caporal": "^1.4.0",
     "conventional-recommended-bump": "6.1.0",
-    "simple-git": "^2.31.0",
-    "caporal": "^1.4.0"
+    "simple-git": "^2.31.0"
   },
   "devDependencies": {
     "@types/conventional-recommended-bump": "^6.0.0",

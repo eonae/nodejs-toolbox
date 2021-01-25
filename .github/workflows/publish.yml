@@ -2,12 +2,12 @@
 # Pipeline for build, lint and run unit tests.
 #
 
-name: build
+name: publish
 
 on:
   push:
     branches:
-      - develop
+      - master
 
 jobs:
   publish:
@@ -30,3 +30,8 @@ jobs:
 
       - name: bootstrap
         run: make full-rebuild
+
+      - name: bump
+        run: lerna publish --conventional-commits --yes
+        env:
+          NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}'

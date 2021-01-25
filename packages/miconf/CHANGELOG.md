@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/eonae/nodejs-toolbox/compare/v0.3.0...v0.4.0) (2021-01-25)
+
+
+### Features
+
+* **@eonae/miconf:** separate index file and cli entry point ([af95041](https://github.com/eonae/nodejs-toolbox/commit/af95041379f941fb7648f89d3b8fe1f48ab938cf))
+
+
+
+
+
 # 0.3.0 (2021-01-25)
 
 

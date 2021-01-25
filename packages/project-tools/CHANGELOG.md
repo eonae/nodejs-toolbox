@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/eonae/nodejs-toolbox/compare/v0.4.1...v0.5.0) (2021-01-25)
+
+
+### Features
+
+* switched from abstract class to interface for ConfigMigrations ([94f0f3b](https://github.com/eonae/nodejs-toolbox/commit/94f0f3bd65037d2d95d13b038125f2955711c02a))
+
+
+
+
+
 ## [0.4.1](https://github.com/eonae/nodejs-toolbox/compare/v0.4.0...v0.4.1) (2021-01-25)
 
 **Note:** Version bump only for package @eonae/project-tools

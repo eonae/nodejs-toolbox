@@ -1,6 +1,6 @@
 import { cloneDeep } from 'lodash';
 import { join, isAbsolute } from 'path';
-import { readObj, saveObj } from '@libs/common';
+import { readObj, saveObj } from '@eonae/common';
 import { Transformation } from './migrations/types';
 
 export class Config<T = unknown> {

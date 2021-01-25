@@ -11,13 +11,14 @@
     "*.md"
   ],
   "scripts": {
+    "publish-npm": "npm publish --access public",
     "build": "rm -rf ./dist && npm run compile",
     "clean": "rm -rf ./dist && rm -rf ./node_modules",
     "compile": "tsc --project tsconfig.json",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@libs/common": "^2.3.6",
+    "@eonae/common": "^0.1.0",
     "@eonae/semantic-version": "^0.1.0",
     "@eonae/project-tools": "^0.1.0",
     "caporal": "^1.4.0",

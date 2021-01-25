@@ -1,12 +1,12 @@
 import { promises as fs } from 'fs';
 import { join, isAbsolute } from 'path';
-import { Constructor } from '@libs/common';
+import { Constructor } from '@eonae/common';
 import { SemanticVersion } from '@eonae/semantic-version';
 import { getSequence } from '../../get-sequence.function';
 import { ConfigMigration } from './migration.abstract';
 import { Config } from '../config.class';
 import { Direction } from './types';
-import { MissingMigrationError } from '../exceptions/missing-migration.error';
+import { MissingMigrationError } from '../exceptions';
 
 const MIGRATION_FILE_PATTERN = /^migration-(\S+)(.js|.ts)$/;
 

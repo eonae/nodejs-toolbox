@@ -1,0 +1,7 @@
+VAR: "1"
+LIB: dsafsdaf
+test:
+  - name: string
+    system: 'os'
+  - name: number
+    faith: 0

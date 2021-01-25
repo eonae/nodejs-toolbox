@@ -6,3 +6,6 @@ full-rebuild:
 	npm run build
 	npm run lint
 	npm run test
+
+publish:
+	lerna run publish-npm

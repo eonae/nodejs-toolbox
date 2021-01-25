@@ -1,0 +1,38 @@
+#
+# Pipeline for build, lint and run unit tests.
+#
+
+name: publish
+env:
+  NPM_TOKEN: '${{ secrets.NPM_TOKEN }}'
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: configure-git
+        run: git config user.email "eonae.white@gmail.com" && git config user.name "ci"
+
+      - name: node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12
+      - name: lerna
+        run: npm i lerna -g
+
+      - name: bootstrap
+        run: make full-rebuild
+      - name: bump
+        run: lerna version --conventional-commits --yes
+      - name: publish
+        run: make publish

@@ -10,10 +10,10 @@ const DEFAULT_NAME = 'DEFAULT_NAME';
 
 // А если без дефолта? Тогда нужна ф-ция хелпер типа: alert()
 
-export default class Migration1611314569582_1_2_4 extends ConfigMigration {
-  from = (): SemanticVersion => new SemanticVersion('1.2.3');
+export default class Migration1611314569582_1_2_4 implements ConfigMigration {
+  from = new SemanticVersion('1.2.3');
 
-  to = (): SemanticVersion => new SemanticVersion('1.2.4');
+  to = new SemanticVersion('1.2.4');
 
   up (prev: any): any {
     return {

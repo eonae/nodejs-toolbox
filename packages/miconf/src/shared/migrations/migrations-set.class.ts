@@ -3,7 +3,7 @@ import { join, isAbsolute } from 'path';
 import { Constructor } from '@eonae/common';
 import { SemanticVersion } from '@eonae/semantic-version';
 import { getSequence } from '../../get-sequence.function';
-import { ConfigMigration } from './migration.abstract';
+import { ConfigMigration, ConfigMigrationWrapper } from './migration.class';
 import { Config } from '../config.class';
 import { Direction } from './types';
 import { MissingMigrationError } from '../exceptions';
@@ -12,14 +12,14 @@ const MIGRATION_FILE_PATTERN = /^migration-(\S+)(.js|.ts)$/;
 
 export type NeededMigration = { from: SemanticVersion, to: SemanticVersion };
 
-export const importAndInstantiate = async (fullname: string): Promise<ConfigMigration> => {
+export const importAndInstantiate = async (fullname: string): Promise<ConfigMigrationWrapper> => {
   const Migration = (await import(fullname)).default as Constructor<ConfigMigration>;
-  return new Migration();
+  return new ConfigMigrationWrapper(new Migration());
 };
 
 export class MigrationsSet {
   constructor (
-    private migrations: ConfigMigration[]
+    private migrations: ConfigMigrationWrapper[]
   ) { }
 
   public migrate (config: Config, from: SemanticVersion, to: SemanticVersion): Config {
@@ -46,7 +46,7 @@ export class MigrationsSet {
       return acc;
     }, []);
     const missing = needed
-      .filter(m => !this.migrations.find(x => x.from().equals(m.from) && x.to().equals(m.to)));
+      .filter(m => !this.migrations.find(x => x.from.equals(m.from) && x.to.equals(m.to)));
     if (missing.length > 0) {
       throw new MissingMigrationError(missing);
     }

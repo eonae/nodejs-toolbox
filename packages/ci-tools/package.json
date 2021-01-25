@@ -14,8 +14,7 @@
     "publish-npm": "npm publish --access public",
     "build": "rm -rf ./dist && npm run compile",
     "clean": "rm -rf ./dist && rm -rf ./node_modules",
-    "compile": "tsc --project tsconfig.json",
-    "prepublishOnly": "npm run build"
+    "compile": "tsc --project tsconfig.json"
   },
   "dependencies": {
     "@eonae/common": "^0.4.1",

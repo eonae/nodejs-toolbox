@@ -6,10 +6,10 @@
 import { SemanticVersion } from '@eonae/semantic-version';
 import { ConfigMigration } from '../src/shared';
 
-export default class Migration1611314584499_1_2_5 extends ConfigMigration {
-  from = (): SemanticVersion => new SemanticVersion('1.2.4');
+export default class Migration1611314584499_1_2_5 implements ConfigMigration {
+  from = new SemanticVersion('1.2.4');
 
-  to = (): SemanticVersion => new SemanticVersion('1.2.5');
+  to = new SemanticVersion('1.2.5');
 
   up (prev: any): any {
     return {

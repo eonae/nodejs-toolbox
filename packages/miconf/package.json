@@ -18,9 +18,9 @@
     "compile": "tsc --project tsconfig.json"
   },
   "dependencies": {
-    "@eonae/common": "^0.7.0",
-    "@eonae/project-tools": "^0.7.0",
-    "@eonae/semantic-version": "^0.7.0",
+    "@eonae/common": "^0.7.1",
+    "@eonae/project-tools": "^0.7.1",
+    "@eonae/semantic-version": "^0.7.1",
     "ajv": "^7.0.3",
     "caporal": "^1.4.0",
     "lodash": "4.17.20"

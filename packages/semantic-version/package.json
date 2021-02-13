@@ -1,6 +1,6 @@
 {
   "name": "@eonae/semantic-version",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "CLI",
   "main": "dist/index.js",
   "files": [

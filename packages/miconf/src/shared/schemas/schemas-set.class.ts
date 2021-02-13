@@ -35,11 +35,8 @@ export class SchemasSet {
   public static async load (dir = 'schemas', settings?: MiConfSettings): Promise<SchemasSet> {
     const fulldir = isAbsolute(dir) ? dir : join(process.cwd(), dir);
     const schemaFiles = (await fs.readdir(fulldir))
-      .map(x => {
-        const match = SCHEMAS_FILE_PATTERN.test(x);
-        if (!match) throw new Error(`<${x}> doen't match schema file pattern!`);
-        return x;
-      });
+      .filter(x => SCHEMAS_FILE_PATTERN.test(x));
+
     const schemas = await Promise.all(
       schemaFiles.map(async filename => ({
         version: SCHEMAS_FILE_PATTERN.exec(filename)[1],

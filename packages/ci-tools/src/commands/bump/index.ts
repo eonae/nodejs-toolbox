@@ -29,6 +29,9 @@ export const validateOpts = (opts: BumpOptions): void => {
   if (opts.section === 'increment' && opts.dropIncrement) {
     throw new Error('Incompatible options: --semantic increment and --dropIncrement');
   }
+  if (opts.tagPattern && !/^\S*{{version}}\S*$/.test(opts.tagPattern)) {
+    throw new Error('Tag pattern should match "^\\S*{{version}}\\S*"');
+  }
 };
 
 export const getCurrentVersion = async (): Promise<SemanticVersion> => new SemanticVersion(
@@ -97,9 +100,12 @@ export const bump = async (_: unknown, opts: BumpOptions, logger: CaporalLogger)
     await git.add('.');
     await git.commit(`chore(bump): ${bumped.toString()}`);
     if (!opts.noTag) {
-      logger.debug(`Creating tag: ${bumped.toString()}`);
+      const tag = opts.tagPattern
+        ? opts.tagPattern.replace('{{version}}', bumped.toString())
+        : bumped.toString();
+      logger.debug(`Creating tag: ${tag}`);
       try {
-        await git.addAnnotatedTag(bumped.toString(), `version ${bumped.toString()}`);
+        await git.addAnnotatedTag(tag, `version ${bumped.toString()}`);
       } catch (err) {
         logger.error(err.message);
         logger.info(

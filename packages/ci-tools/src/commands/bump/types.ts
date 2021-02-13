@@ -14,6 +14,7 @@ export type PrimaryOptions = {
 export type SecondaryOptions = {
   noTag?: boolean;
   noCommit?: string;
+  tagPattern?: string;
 };
 
 export interface CaporalLogger {

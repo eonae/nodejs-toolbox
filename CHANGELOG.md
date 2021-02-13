@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/eonae/nodejs-toolbox/compare/v0.6.0...v0.7.0) (2021-02-13)
+
+
+### Features
+
+* **@eonae/ci-tools:** add tagPattern option to bumper ([bc4a699](https://github.com/eonae/nodejs-toolbox/commit/bc4a6999ab3887592dac3ca0ced81e6c0fc7cc18))
+
+
+
+
+
 # [0.6.0](https://github.com/eonae/nodejs-toolbox/compare/v0.5.0...v0.6.0) (2021-02-13)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/eonae/nodejs-toolbox/compare/v0.5.0...v0.6.0) (2021-02-13)
+
+
+### Features
+
+* add passing ajv options via miconf.config ([926b245](https://github.com/eonae/nodejs-toolbox/commit/926b245fdff65e9240bd37f50f15feaac3855c97))
+
+
+
+
+
 # [0.5.0](https://github.com/eonae/nodejs-toolbox/compare/v0.4.1...v0.5.0) (2021-01-25)
 
 

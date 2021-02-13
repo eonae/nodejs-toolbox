@@ -1,4 +1,4 @@
-import { Config, CaporalLogger, Schema, AjvError } from '../shared';
+import { Config, CaporalLogger, Schema, AjvError, MiConfSettings } from '../shared';
 
 export interface ValidateAgruments {
   configPath: string;
@@ -16,8 +16,9 @@ export const validate = async (
   logger.debug('Validating...');
   const { configPath, schemaPath } = args;
 
+  const settings = await MiConfSettings.load();
   const config = await Config.load(configPath);
-  const schema = await Schema.load(schemaPath);
+  const schema = await Schema.load(schemaPath, settings);
 
   const errors = schema.validate(config);
   if (errors) {

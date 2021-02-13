@@ -32,7 +32,7 @@ export const migrate = async (
   const to = new SemanticVersion(args.to);
 
   const settings = await MiConfSettings.load(settingsFile);
-  const schemas = await SchemasSet.load(schemasDir);
+  const schemas = await SchemasSet.load(schemasDir, settings);
   const migrations = await MigrationsSet.load(migrationsDir);
   migrations.validateSufficiency(settings.supported);
   schemas.validateSufficiency(settings.supported);

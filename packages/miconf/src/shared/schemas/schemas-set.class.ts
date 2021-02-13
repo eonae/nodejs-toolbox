@@ -6,6 +6,7 @@ import { SemanticVersion } from '@eonae/semantic-version';
 import { MissingSchemasError, AjvError } from '../exceptions';
 import { Config } from '../config.class';
 import { Schema } from './schema.class';
+import { MiConfSettings } from '../miconf.settings';
 
 const SCHEMAS_FILE_PATTERN = /^schema-(\S+).json$/;
 
@@ -31,7 +32,7 @@ export class SchemasSet {
     console.log('Schemas set validated successfully!');
   }
 
-  public static async load (dir = 'schemas'): Promise<SchemasSet> {
+  public static async load (dir = 'schemas', settings?: MiConfSettings): Promise<SchemasSet> {
     const fulldir = isAbsolute(dir) ? dir : join(process.cwd(), dir);
     const schemaFiles = (await fs.readdir(fulldir))
       .map(x => {
@@ -42,7 +43,10 @@ export class SchemasSet {
     const schemas = await Promise.all(
       schemaFiles.map(async filename => ({
         version: SCHEMAS_FILE_PATTERN.exec(filename)[1],
-        schema: await Schema.load(join(fulldir, filename))
+        schema: await Schema.load(
+          join(fulldir, filename),
+          settings || await MiConfSettings.load()
+        )
       }))
     );
 

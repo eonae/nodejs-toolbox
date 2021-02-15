@@ -32,7 +32,5 @@ jobs:
 
       - name: bootstrap
         run: make full-rebuild
-      - name: bump
-        run: lerna version --conventional-commits --yes
       - name: publish
-        run: make publish
+        run: lerna publish --conventional-commits --yes

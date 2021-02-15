@@ -1,6 +1,6 @@
 {
   "name": "@eonae/project-tools",
-  "version": "0.7.2",
+  "version": "0.7.4",
   "description": "CLI",
   "main": "dist/index.js",
   "files": [
@@ -14,7 +14,7 @@
     "compile": "tsc --project tsconfig.json"
   },
   "dependencies": {
-    "@eonae/common": "^0.7.2"
+    "@eonae/common": "^0.7.4"
   },
   "author": "Sergey Aslanov",
   "license": "ISC"

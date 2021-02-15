@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/eonae/nodejs-toolbox/compare/v0.7.2...v0.7.3) (2021-02-15)
+
+
+### Bug Fixes
+
+* **ci-tools:** add conventional-changelog-angular to package.json ([b367e11](https://github.com/eonae/nodejs-toolbox/commit/b367e11d79c9e49800d13d0f62c294fe7887e086))
+
+
+
+
+
 ## [0.7.1](https://github.com/eonae/nodejs-toolbox/compare/v0.7.0...v0.7.1) (2021-02-13)
 
 

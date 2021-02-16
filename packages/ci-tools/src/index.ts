@@ -47,7 +47,7 @@ $ ci-tools bump --section minor --original 1.2.3`)
     .option('--dropIncrement', 'Will drop increment section.')
     .option('--noTag', 'Skip creating git tags.')
     .option('--noCommit', 'Skip commiting. Will apply --noTag automatically.')
-    .option('--tagPattern', 'Specify pattern for annotated tags. Like: "release-{{version}}"')
+    .option('--tagPattern <tagPattern>', 'Specify pattern for annotated tags. Like: "release-{{version}}"')
     .action(bump)
 
     .command('tags', 'Gets git tags')

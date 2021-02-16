@@ -1,6 +1,6 @@
 {
   "name": "@eonae/ci-tools",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "CLI",
   "main": "dist/index.js",
   "bin": {

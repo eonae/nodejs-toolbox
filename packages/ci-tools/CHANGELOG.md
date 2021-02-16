@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.5](https://github.com/eonae/nodejs-toolbox/compare/v0.7.4...v0.7.5) (2021-02-16)
+
+
+### Bug Fixes
+
+* **ci-tools:** tag pattern ([efb25db](https://github.com/eonae/nodejs-toolbox/commit/efb25db44a750c85f9779411d9221c79e7698cf0))
+
+
+
+
+
 ## [0.7.3](https://github.com/eonae/nodejs-toolbox/compare/v0.7.2...v0.7.3) (2021-02-15)
 
 

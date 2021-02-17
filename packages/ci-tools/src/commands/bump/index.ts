@@ -24,10 +24,10 @@ export const validateOpts = (opts: BumpOptions): void => {
     throw new Error('Incompatible options: --release with --prefix');
   }
   if (opts.original && !opts.section) {
-    throw new Error('Incompatible options: --origin without --semantic');
+    throw new Error('Incompatible options: --origin without --section');
   }
   if (opts.section === 'increment' && opts.dropIncrement) {
-    throw new Error('Incompatible options: --semantic increment and --dropIncrement');
+    throw new Error('Incompatible options: --section increment and --dropIncrement');
   }
   if (opts.tagPattern && !/^\S*{{version}}\S*$/.test(opts.tagPattern)) {
     throw new Error('Tag pattern should match "^\\S*{{version}}\\S*"');
@@ -70,7 +70,7 @@ export const getSectionToBump = (
   section: Section
 ): Promise<Diff> => {
   if (section === 'conventional') return getConventionalBump();
-  return Promise.resolve(section) ?? Promise.resolve('none');
+  return Promise.resolve(section ?? 'none');
 };
 
 export const bump = async (_: unknown, opts: BumpOptions, logger: CaporalLogger): Promise<void> => {

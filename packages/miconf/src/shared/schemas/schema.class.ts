@@ -25,7 +25,7 @@ export class Schema<T = unknown> {
   }
 
   public validate (config: Config<T>): unknown[] {
-    const validate = new Ajv(this.settings.ajv).compile(this.content);
+    const validate = new Ajv(this.settings.ajv).compile(this.content as any);
     console.log('Validating config...', config.content);
     validate(config.content);
     return validate.errors;

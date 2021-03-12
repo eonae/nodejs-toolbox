@@ -1,6 +1,6 @@
 {
   "name": "@eonae/miconf",
-  "version": "0.7.7",
+  "version": "0.7.9",
   "description": "CLI",
   "main": "dist/index.js",
   "bin": {

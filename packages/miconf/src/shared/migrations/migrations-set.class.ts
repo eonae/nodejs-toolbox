@@ -22,7 +22,11 @@ export class MigrationsSet {
     private migrations: ConfigMigrationWrapper[]
   ) { }
 
-  public migrate (config: Config, from: SemanticVersion, to: SemanticVersion): Config {
+  public async migrate (
+    config: Config,
+    from: SemanticVersion,
+    to: SemanticVersion
+  ): Promise<Config> {
     const direction = to.isGreaterThan(from) ? Direction.UP : Direction.DOWN;
     const initial = this.migrations.find(x => x.startsFrom(from, direction));
     const final = this.migrations.find(x => x.leadsTo(to, direction));
@@ -33,10 +37,11 @@ export class MigrationsSet {
       this.migrations.indexOf(final)
     );
 
-    return sequence.reduce(
-      (acc, migration) => migration.applyTo(acc, direction),
-      config
-    );
+    for (const migration of sequence) {
+      await migration.applyTo(config, direction);
+    }
+
+    return config;
   }
 
   public validateSufficiency (versions: SemanticVersion[]): void {

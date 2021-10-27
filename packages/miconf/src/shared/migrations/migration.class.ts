@@ -42,13 +42,13 @@ export class ConfigMigrationWrapper<Prev = any, Next = any> {
     return direction === Direction.UP ? `${from} -> ${to}` : `${to} -> ${from}`;
   }
 
-  public applyTo (config: Config, direction: Direction): Config {
+  public async applyTo (config: Config, direction: Direction): Promise<Config> {
     // FIXME test what if there are "this" calls inside of up and down methods.
     const transformation = direction === Direction.UP
       ? (x: Prev) => this.inner.up(x)
       : (x: Next) => this.inner.down(x);
     console.log(`Migrating config ${this.toString(direction)}...`);
-    const updated = config.apply(transformation);
+    const updated = await config.apply(transformation);
     console.log({ was: config.content, now: updated.content });
     return updated;
   }

@@ -9,8 +9,8 @@ export class Config<T = unknown> {
     public readonly content: T
   ) { }
 
-  public apply (transformation: Transformation): Config<T> {
-    const transformed = transformation(cloneDeep(this.content)) as T;
+  public async apply (transformation: Transformation): Promise<Config<T>> {
+    const transformed = await transformation(cloneDeep(this.content)) as T;
     return new Config(this.fullpath, transformed);
   }
 

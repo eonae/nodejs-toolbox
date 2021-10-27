@@ -40,7 +40,7 @@ export const migrate = async (
   const config = await Config.load(configPath);
   schemas.validate(config, from);
 
-  const updated = migrations.migrate(config, from, to);
+  const updated = await migrations.migrate(config, from, to);
   schemas.validate(updated, to);
   await updated.save();
 };

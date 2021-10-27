@@ -15,12 +15,12 @@ export class SchemasSet {
     private schemas: Map<string, Schema>
   ) { }
 
-  public validate (config: Config, version: SemanticVersion): void {
+  public async validate (config: Config, version: SemanticVersion): Promise<void> {
     const schema = this.schemas.get(version.toString());
     if (!schema) {
       throw new Error(`No schema for <${version.toString()}> found in the set!`);
     }
-    const errors = schema.validate(config);
+    const errors = await schema.validate(config);
     if (errors) {
       throw new AjvError(`Config validation failed for version <${version.toString()}>!`, errors);
     }

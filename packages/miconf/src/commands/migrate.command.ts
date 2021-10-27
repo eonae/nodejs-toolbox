@@ -38,9 +38,9 @@ export const migrate = async (
   schemas.validateSufficiency(settings.supported);
 
   const config = await Config.load(configPath);
-  schemas.validate(config, from);
+  await schemas.validate(config, from);
 
   const updated = await migrations.migrate(config, from, to);
-  schemas.validate(updated, to);
+  await schemas.validate(updated, to);
   await updated.save();
 };

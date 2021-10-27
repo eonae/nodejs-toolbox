@@ -24,10 +24,10 @@ export class Schema<T = unknown> {
     );
   }
 
-  public validate (config: Config<T>): unknown[] {
+  public async validate (config: Config<T>): Promise<unknown[]> {
     const validate = new Ajv(this.settings.ajv).compile(this.content as any);
     console.log('Validating config...', config.content);
-    validate(config.content);
+    await validate(config.content);
     return validate.errors;
   }
 }

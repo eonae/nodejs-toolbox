@@ -20,7 +20,7 @@ export const validate = async (
   const config = await Config.load(configPath);
   const schema = await Schema.load(schemaPath, settings);
 
-  const errors = schema.validate(config);
+  const errors = await schema.validate(config);
   if (errors) {
     // eslint-disable-next-line no-console
     console.error('Errors:', errors);

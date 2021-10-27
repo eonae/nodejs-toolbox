@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/eonae/nodejs-toolbox/compare/v0.7.9...v0.8.0) (2021-10-27)
+
+
+### Bug Fixes
+
+* **@eonae/miconf:** linting ([d987d46](https://github.com/eonae/nodejs-toolbox/commit/d987d469dc93b7e26c3d0ffa3e499e5e3b88921d))
+
+
+### Features
+
+* **@eonae/miconf:** support asynchronous migrations ([10873f9](https://github.com/eonae/nodejs-toolbox/commit/10873f9743b65604796c41549633b6d50c949461))
+
+
+
+
+
 ## [0.7.1](https://github.com/eonae/nodejs-toolbox/compare/v0.7.0...v0.7.1) (2021-02-13)
 
 

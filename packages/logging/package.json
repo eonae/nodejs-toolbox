@@ -1,6 +1,6 @@
 {
   "name": "@eonae/logging",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Universal Logging system",
   "main": "dist/index.js",
   "files": [
@@ -14,7 +14,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@eonae/common": "^0.8.0",
+    "@eonae/common": "^0.9.0",
     "chalk": "^4.1.0",
     "dotenv": "^8.2.0"
   },

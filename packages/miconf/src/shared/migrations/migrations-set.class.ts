@@ -37,11 +37,13 @@ export class MigrationsSet {
       this.migrations.indexOf(final)
     );
 
+    let result = config;
+
     for (const migration of sequence) {
-      await migration.applyTo(config, direction);
+      result = await migration.applyTo(config, direction);
     }
 
-    return config;
+    return result;
   }
 
   public validateSufficiency (versions: SemanticVersion[]): void {

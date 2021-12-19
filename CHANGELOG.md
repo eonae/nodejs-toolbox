@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/eonae/nodejs-toolbox/compare/v0.9.0...v0.9.1) (2021-12-19)
+
+
+### Bug Fixes
+
+* **@eonae/miconf:** add some logging ([1f7e374](https://github.com/eonae/nodejs-toolbox/commit/1f7e374a07506006fddd364212b45303c119ed54))
+
+
+
+
+
 # [0.9.0](https://github.com/eonae/nodejs-toolbox/compare/v0.8.0...v0.9.0) (2021-12-19)
 
 

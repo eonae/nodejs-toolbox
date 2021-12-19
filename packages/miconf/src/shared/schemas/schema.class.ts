@@ -26,6 +26,7 @@ export class Schema<T = unknown> {
   }
 
   public async validate (config: Config<T>): Promise<unknown[]> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const validate = new Ajv(this.settings.ajv).compile(this.content as any);
     Logger.info('Validating against schema...');
 

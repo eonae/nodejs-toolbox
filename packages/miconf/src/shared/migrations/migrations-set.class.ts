@@ -43,7 +43,7 @@ export class MigrationsSet {
     let result = config;
 
     for (const migration of sequence) {
-      result = await migration.applyTo(config, direction);
+      result = await migration.applyTo(result, direction);
     }
 
     return result;

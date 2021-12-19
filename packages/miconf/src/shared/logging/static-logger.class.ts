@@ -4,7 +4,6 @@ export class Logger {
   static _logger: CaporalLogger = null;
 
   static set (logger: CaporalLogger): void {
-    Logger.check();
     Logger._logger = logger;
   }
 

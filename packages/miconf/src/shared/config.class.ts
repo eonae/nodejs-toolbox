@@ -2,6 +2,7 @@ import { cloneDeep } from 'lodash';
 import { join, isAbsolute } from 'path';
 import { readObj, saveObj } from '@eonae/common';
 import { Transformation } from './migrations/types';
+import { Logger } from '.';
 
 export class Config<T = unknown> {
   constructor (
@@ -16,7 +17,10 @@ export class Config<T = unknown> {
 
   public static async load<K = unknown> (path: string): Promise<Config<K>> {
     const fullpath = isAbsolute(path) ? path : join(process.cwd(), path);
+
+    Logger.info(`Loading source file from ${fullpath}`);
     const content = await readObj(fullpath);
+
     return new Config(fullpath, content as K);
   }
 

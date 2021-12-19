@@ -6,6 +6,7 @@ import {
   SchemasSet,
   CaporalLogger
 } from '../shared';
+import { Logger } from '../shared/logging';
 
 export interface MigrateArguments {
   configPath: string;
@@ -25,19 +26,26 @@ export const migrate = async (
   opts: MigrateOptions,
   logger: CaporalLogger
 ): Promise<void> => {
-  logger.debug('Migrating...');
+  Logger.set(logger);
+
   const { configPath } = args;
   const { migrationsDir, schemasDir, settingsFile } = opts;
+
   const from = new SemanticVersion(args.from);
   const to = new SemanticVersion(args.to);
 
+  logger.debug(`Preparing migration from ${args.from} to ${args.to}`);
+
   const settings = await MiConfSettings.load(settingsFile);
+
   const schemas = await SchemasSet.load(schemasDir, settings);
-  const migrations = await MigrationsSet.load(migrationsDir);
-  migrations.validateSufficiency(settings.supported);
   schemas.validateSufficiency(settings.supported);
 
+  const migrations = await MigrationsSet.load(migrationsDir);
+  migrations.validateSufficiency(settings.supported);
+
   const config = await Config.load(configPath);
+
   await schemas.validate(config, from);
 
   const updated = await migrations.migrate(config, from, to);

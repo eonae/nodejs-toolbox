@@ -1,4 +1,4 @@
-import { Config, CaporalLogger, Schema, AjvError, MiConfSettings } from '../shared';
+import { Config, CaporalLogger, Schema, AjvError, MiConfSettings, Logger } from '../shared';
 
 export interface ValidateAgruments {
   configPath: string;
@@ -13,6 +13,8 @@ export const validate = async (
   opts: ValidateOptions,
   logger: CaporalLogger
 ): Promise<void> => {
+  Logger.set(logger);
+
   logger.debug('Validating...');
   const { configPath, schemaPath } = args;
 
@@ -22,8 +24,6 @@ export const validate = async (
 
   const errors = await schema.validate(config);
   if (errors) {
-    // eslint-disable-next-line no-console
-    console.error('Errors:', errors);
     throw new AjvError('Validation failed!', errors);
   }
 };

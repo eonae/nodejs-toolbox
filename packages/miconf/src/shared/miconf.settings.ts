@@ -2,6 +2,7 @@ import { Options } from 'ajv';
 import { join, isAbsolute } from 'path';
 import { readObj } from '@eonae/common';
 import { SemanticVersion } from '@eonae/semantic-version';
+import { Logger } from './logging';
 
 export interface MiConfSettingsRaw {
   supported: string[],
@@ -16,7 +17,10 @@ export class MiConfSettings {
 
   public static async load (path = 'miconf.config.yml'): Promise<MiConfSettings> {
     const fullpath = isAbsolute(path) ? path : join(process.cwd(), path);
+
+    Logger.debug(`Loading settings from ${fullpath}`);
     const content = await readObj(fullpath) as MiConfSettingsRaw;
+
     return new MiConfSettings(
       content.supported.map(x => new SemanticVersion(x)),
       content.ajv

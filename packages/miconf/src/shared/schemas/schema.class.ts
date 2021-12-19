@@ -6,6 +6,7 @@ import { isAbsolute, join } from 'path';
 import { readObj } from '@eonae/common';
 import { Config } from '../config.class';
 import { MiConfSettings } from '../miconf.settings';
+import { Logger } from '..';
 
 export class Schema<T = unknown> {
   private constructor (
@@ -26,7 +27,8 @@ export class Schema<T = unknown> {
 
   public async validate (config: Config<T>): Promise<unknown[]> {
     const validate = new Ajv(this.settings.ajv).compile(this.content as any);
-    console.log('Validating config...', config.content);
+    Logger.info('Validating against schema...');
+
     await validate(config.content);
     return validate.errors;
   }

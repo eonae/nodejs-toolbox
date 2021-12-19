@@ -1,6 +1,7 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable no-console */
 import { SemanticVersion } from '@eonae/semantic-version';
+import { Logger } from '../logging';
 import { Config } from '../config.class';
 import { Direction } from './types';
 
@@ -47,9 +48,9 @@ export class ConfigMigrationWrapper<Prev = any, Next = any> {
     const transformation = direction === Direction.UP
       ? (x: Prev) => this.inner.up(x)
       : (x: Next) => this.inner.down(x);
-    console.log(`Migrating config ${this.toString(direction)}...`);
+
+    Logger.info(`Applying migration ${this.toString(direction)}...`);
     const updated = await config.apply(transformation);
-    console.log({ was: config.content, now: updated.content });
     return updated;
   }
 }

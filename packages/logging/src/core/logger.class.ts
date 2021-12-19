@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Constructor, enumValues } from '@libs/common';
+import { Constructor, enumValues } from '@eonae/common';
 import {
   GetTraceIdFn,
   ILogFormatter,

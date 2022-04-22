@@ -5,6 +5,7 @@ export type SectionOptions = {
 };
 
 export type PrimaryOptions = {
+  current?: string;
   original?: string;
   prefix?: string;
   release?: boolean;
@@ -13,6 +14,7 @@ export type PrimaryOptions = {
 
 export type SecondaryOptions = {
   noTag?: boolean;
+  noManifestsUpdate?: boolean;
   noCommit?: string;
   tagPattern?: string;
 };

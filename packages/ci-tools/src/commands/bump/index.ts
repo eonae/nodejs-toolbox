@@ -34,9 +34,12 @@ export const validateOpts = (opts: BumpOptions): void => {
   }
 };
 
-export const getCurrentVersion = async (): Promise<SemanticVersion> => new SemanticVersion(
-  (await Manifest.load(process.cwd())).content.version
-);
+export const getCurrentVersion = async ({ current }: BumpOptions): Promise<SemanticVersion> => {
+  const versionString = current
+    ?? (await Manifest.load(process.cwd())).content.version;
+
+  return new SemanticVersion(versionString);
+};
 
 export const updateManifests = async (version: SemanticVersion): Promise<void> => {
   const manifest = await Manifest.load(process.cwd());
@@ -76,13 +79,14 @@ export const getSectionToBump = (
 export const bump = async (_: unknown, opts: BumpOptions, logger: CaporalLogger): Promise<void> => {
   validateOpts(opts);
 
-  const curr = await getCurrentVersion();
+  const curr = await getCurrentVersion(opts);
   logger.info(`Current version: ${curr.toString()}`);
 
   const section = await getSectionToBump(opts.section);
   logger.info(`Bump section: ${section}`);
 
   const bumped = getBumped(curr, section, opts);
+
   const hasChanged = bumped.isGreaterThan(curr)
                   || bumped.prerelease.prefix !== curr.prerelease.prefix;
   // FIXME: Make prefix a part of comparison?
@@ -91,9 +95,11 @@ export const bump = async (_: unknown, opts: BumpOptions, logger: CaporalLogger)
     return;
   }
 
-  logger.info('Updating manifests... (only root for now)');
-  await updateManifests(bumped);
-  logger.info(`Updated: ${curr.toString()} -> ${bumped.toString()}`);
+  if (!('noManifestsUpdate' in opts) || !opts.noManifestsUpdate) {
+    logger.info('Updating manifests... (only root for now)');
+    await updateManifests(bumped);
+    logger.info(`Updated: ${curr.toString()} -> ${bumped.toString()}`);
+  }
 
   if (!opts.noCommit) {
     logger.debug('Commiting...');

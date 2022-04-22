@@ -36,12 +36,14 @@ export const tags = async (_: unknown, opts: TagsOptions, logger: CaporalLogger)
     : alwaysTrue;
 
   const RELEASE_PATTERN = /^\d{1,5}\.\d{1,5}\.\d{1,5}$/;
+
   const releaseOnly: FilterFunc<string> = opts.release
     ? testRegexp(RELEASE_PATTERN)
     : alwaysTrue;
 
   const found = (await git.tags()).all
     .filter(x => filterByRegexp(x) && releaseOnly(x));
+
   if (!opts.last) {
     logger.info(found.join(' '));
     return;
@@ -54,6 +56,7 @@ export const tags = async (_: unknown, opts: TagsOptions, logger: CaporalLogger)
   if (!latest) {
     throw Error('No tags found with specified filter. So there are no --last.');
   }
+
   logger.info(latest.toString());
 
   // if git tag is already set that means that commit has no sense.

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/eonae/nodejs-toolbox/compare/v0.9.4...v0.10.0) (2022-04-22)
+
+
+### Features
+
+* **@eonae/ci-tools:** add --current and --noManifestsUpdate options to bumper ([4a8217b](https://github.com/eonae/nodejs-toolbox/commit/4a8217b9661469fda66cc06c628acbb392769c41))
+
+
+
+
+
 ## [0.9.1](https://github.com/eonae/nodejs-toolbox/compare/v0.9.0...v0.9.1) (2021-12-19)
 
 

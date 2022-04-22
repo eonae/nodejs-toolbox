@@ -1,6 +1,6 @@
 {
   "name": "@eonae/miconf",
-  "version": "0.9.4",
+  "version": "0.10.0",
   "description": "CLI",
   "main": "dist/index.js",
   "bin": {
@@ -18,9 +18,9 @@
     "compile": "tsc --project tsconfig.json"
   },
   "dependencies": {
-    "@eonae/common": "^0.9.1",
-    "@eonae/project-tools": "^0.9.1",
-    "@eonae/semantic-version": "^0.9.1",
+    "@eonae/common": "^0.10.0",
+    "@eonae/project-tools": "^0.10.0",
+    "@eonae/semantic-version": "^0.10.0",
     "ajv": "^6.12.2",
     "caporal": "^1.4.0",
     "lodash": "4.17.20"

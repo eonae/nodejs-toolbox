@@ -16,7 +16,7 @@ const main = async () => {
   const manifest = await Manifest.load(join(__dirname, '..'));
   cli
     .version(manifest.content.version)
-    .description('CI tools ++')
+    .description('CI tools +++')
     .command('bump', `Bumps package or monorepo version. Examples:
   
 # Does nothing.

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.5](https://github.com/eonae/nodejs-toolbox/compare/v0.10.4...v0.10.5) (2022-04-23)
+
+**Note:** Version bump only for package @eonae/logging
+
+
+
+
+
 # [0.10.0](https://github.com/eonae/nodejs-toolbox/compare/v0.9.4...v0.10.0) (2022-04-22)
 
 **Note:** Version bump only for package @eonae/logging

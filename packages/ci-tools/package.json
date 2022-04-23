@@ -1,6 +1,6 @@
 {
   "name": "@eonae/ci-tools",
-  "version": "0.10.4",
+  "version": "0.10.5",
   "description": "CLI",
   "main": "dist/index.js",
   "bin": {
@@ -17,9 +17,9 @@
     "compile": "tsc --project tsconfig.json"
   },
   "dependencies": {
-    "@eonae/common": "^0.10.0",
-    "@eonae/project-tools": "^0.10.0",
-    "@eonae/semantic-version": "^0.10.0",
+    "@eonae/common": "^0.10.5",
+    "@eonae/project-tools": "^0.10.5",
+    "@eonae/semantic-version": "^0.10.5",
     "caporal": "^1.4.0",
     "conventional-changelog-angular": "^5.0.12",
     "conventional-recommended-bump": "^6.1.0",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/eonae/nodejs-toolbox/compare/v0.10.0...v0.10.1) (2022-04-23)
+
+
+### Bug Fixes
+
+* update package lock ([122082c](https://github.com/eonae/nodejs-toolbox/commit/122082cdc0bc239065995aa0c08d02cc684e828d))
+
+
+
+
+
 # [0.10.0](https://github.com/eonae/nodejs-toolbox/compare/v0.9.4...v0.10.0) (2022-04-22)
 
 

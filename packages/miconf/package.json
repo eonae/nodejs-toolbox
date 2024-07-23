@@ -3,27 +3,26 @@
   "version": "0.10.5",
   "description": "CLI",
   "main": "dist/index.js",
-  "bin": {
-    "miconf": "dist/cli.js"
-  },
+  "bin": "dist/cli.js",
   "files": [
     "dist",
     "*.md"
   ],
   "scripts": {
     "publish-npm": "npm publish --access public",
-    "compile-migrations": "tsc --project tsconfig.migrations.json",
     "build": "rm -rf ./dist && npm run compile",
     "clean": "rm -rf ./dist && rm -rf ./node_modules",
-    "compile": "tsc --project tsconfig.json"
+    "compile": "tsc --project tsconfig.build.json",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@eonae/common": "^0.10.5",
-    "@eonae/project-tools": "^0.10.5",
-    "@eonae/semantic-version": "^0.10.5",
-    "ajv": "^6.12.2",
+    "@eonae/project-tools": "workspace:^",
+    "@eonae/semantic-version": "workspace:^",
+    "@rsdk/common": "^5.0.2",
+    "@rsdk/common.node": "^5.0.2",
+    "ajv": "^8.17.1",
     "caporal": "^1.4.0",
-    "lodash": "4.17.20"
+    "lodash": "4.17.21"
   },
   "author": "Sergey Aslanov",
   "license": "ISC"

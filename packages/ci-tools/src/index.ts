@@ -4,20 +4,23 @@
 // There is no harm to pass async functions to action()
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
-import cli from 'caporal';
-
-import { join } from 'path';
 import { Manifest } from '@eonae/project-tools';
-import { bump } from './commands';
-import { tags } from './commands/tags';
+import cli from 'caporal';
+import { join } from 'node:path';
 
-const main = async () => {
+import { tags } from './commands/tags';
+import { bump } from './commands';
+
+const main = async (): Promise<void> => {
   process.on('SIGINT', () => {});
   const manifest = await Manifest.load(join(__dirname, '..'));
+
   cli
     .version(manifest.content.version)
     .description('CI tools +++')
-    .command('bump', `Bumps package or monorepo version. Examples:
+    .command(
+      'bump',
+      `Bumps package or monorepo version. Examples:
   
 # Does nothing.
 $ ci-tools bump
@@ -40,17 +43,33 @@ $ ci-tools bump --section patch --dropIncrement
 $ ci-tools bump --section minor
 
 # Bumps minor component if current version equals original or is only patch ahead.
-$ ci-tools bump --section minor --original 1.2.3`)
-    .option('--section <section>', 'major | minor | patch | increment | conventional')
-    .option('--current <current>', 'Current version. If provided will not need package.json to get current version.')
-    .option('--original <original>', 'Original version will cause skipping bump it it`s already bumped')
+$ ci-tools bump --section minor --original 1.2.3`,
+    )
+    .option(
+      '--section <section>',
+      'major | minor | patch | increment | conventional',
+    )
+    .option(
+      '--current <current>',
+      'Current version. If provided will not need package.json to get current version.',
+    )
+    .option(
+      '--original <original>',
+      'Original version will cause skipping bump it it`s already bumped',
+    )
     .option('--prefix <prefix>', 'Will set specified prefix and increment = 0.')
     .option('--release', 'Will remove prefix and increment.')
     .option('--dropIncrement', 'Will drop increment section.')
     .option('--noTag', 'Skip creating git tags.')
-    .option('--noManifestsUpdate', 'Skip updating version in package.json and lock-file.')
+    .option(
+      '--noManifestsUpdate',
+      'Skip updating version in package.json and lock-file.',
+    )
     .option('--noCommit', 'Skip commiting. Will apply --noTag automatically.')
-    .option('--tagPattern <tagPattern>', 'Specify pattern for annotated tags. Like: "release-{{version}}"')
+    .option(
+      '--tagPattern <tagPattern>',
+      'Specify pattern for annotated tags. Like: "release-{{version}}"',
+    )
     .action(bump)
 
     .command('tags', 'Gets git tags')
@@ -64,5 +83,5 @@ $ ci-tools bump --section minor --original 1.2.3`)
   cli.parse(process.argv);
 };
 
-// eslint-disable-next-line no-console
+// eslint-disable-next-line unicorn/prefer-top-level-await
 main().catch(console.error);

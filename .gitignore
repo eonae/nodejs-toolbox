@@ -34,3 +34,12 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# compiled output
+/.vscode
+dist
+node_modules
+.nx
+.yarn/*
+!.yarn/releases
+.husky

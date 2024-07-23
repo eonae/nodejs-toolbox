@@ -1,21 +1,21 @@
-import { join, isAbsolute } from 'path';
-import { existsSync } from 'fs';
-import { readObj, saveObj } from '@eonae/common';
-import { ManifestContent } from './manifest-content.interface';
+import { readObj, saveObj } from '@rsdk/common.node';
+import { existsSync } from 'node:fs';
+import { isAbsolute, join } from 'node:path';
+
+import type { ManifestContent } from './manifest-content.interface';
 
 export class Manifest {
-  constructor (
+  constructor(
     private readonly fullpath: string,
-    public readonly content: ManifestContent
-  ) { }
+    public readonly content: ManifestContent,
+  ) {}
 
-  public static async load (dir: string): Promise<Manifest> {
+  public static async load(dir: string): Promise<Manifest> {
     const fullpath = Manifest.getFullpath(dir);
     const content = await readObj(fullpath);
+
     return new Manifest(fullpath, content as ManifestContent);
   }
-
-  public save = (): Promise<void> => saveObj(this.content, this.fullpath);
 
   private static getFullpath = (dir: string): string => {
     const absOrRelative = join(dir, 'package.json');
@@ -27,4 +27,8 @@ export class Manifest {
     }
     return fullpath;
   };
+
+  public save(): Promise<void> {
+    return saveObj(this.content, this.fullpath);
+  }
 }

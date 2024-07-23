@@ -1,17 +1,18 @@
-import { Config, CaporalLogger, Schema, AjvError, MiConfSettings, Logger } from '../shared';
+import type { CaporalLogger } from '../shared';
+import { AjvError, Config, Logger, MiConfSettings, Schema } from '../shared';
 
-export interface ValidateAgruments {
+export interface ValidateArguments {
   configPath: string;
   schemaPath: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ValidateOptions { }
+export interface ValidateOptions {}
 
 export const validate = async (
-  args: ValidateAgruments,
-  opts: ValidateOptions,
-  logger: CaporalLogger
+  args: ValidateArguments,
+  _: ValidateOptions,
+  logger: CaporalLogger,
 ): Promise<void> => {
   Logger.set(logger);
 

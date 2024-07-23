@@ -1,4 +1,4 @@
-import { Section } from '@eonae/semantic-version';
+import type { Section } from '@eonae/semantic-version';
 
 export type SectionOptions = {
   section?: Section;
@@ -20,9 +20,9 @@ export type SecondaryOptions = {
 };
 
 export interface CaporalLogger {
-  debug (message: string): void;
-  info (message: string): void;
-  warn (message: string): void;
+  debug(message: string): void;
+  info(message: string): void;
+  warn(message: string): void;
   error(message: string): void;
 }
 

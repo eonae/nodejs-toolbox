@@ -1,0 +1,31 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "tsconfigs": [
+      "{projectRoot}/tsconfig*",
+      "{workspaceRoot}/tsconfig*"
+    ],
+    "src": [
+      "{projectRoot}/src/**/*"
+    ],
+    "build": [
+      "src",
+      "tsconfigs",
+      "!{projectRoot}/**/*.{spec,test,test.e2e,spec.e2e}.ts",
+      "!{projectRoot}/__test__/**/*",
+      "!{projectRoot}/test/**/*",
+      "!{projectRoot}/test.e2e/**/*",
+      "!{projectRoot}/__test.e2e__/**/*",
+      "{projectRoot}/package.json"
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "inputs": ["^build", "build"],
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"],
+      "cache": true
+    }
+  },
+  "useDaemonProcess": false
+}

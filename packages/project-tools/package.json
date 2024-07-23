@@ -11,10 +11,11 @@
     "publish-npm": "npm publish --access public",
     "build": "rm -rf ./dist && npm run compile",
     "clean": "rm -rf ./dist && rm -rf ./node_modules",
-    "compile": "tsc --project tsconfig.json"
+    "compile": "tsc --project tsconfig.build.json",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@eonae/common": "^0.10.5"
+    "@rsdk/common.node": "^5.0.2"
   },
   "author": "Sergey Aslanov",
   "license": "ISC"

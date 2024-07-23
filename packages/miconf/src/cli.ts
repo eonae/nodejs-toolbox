@@ -3,15 +3,17 @@
 // There is no harm to pass async functions to action()
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
-import { join } from 'path';
-import cli from 'caporal';
-
 import { Manifest } from '@eonae/project-tools';
+import cli from 'caporal';
+import { join } from 'node:path';
+
 import { migrate, validate } from './commands';
 
-const main = async () => {
+const main = async (): Promise<void> => {
   process.on('SIGINT', () => {});
   const manifest = await Manifest.load(join(__dirname, '..'));
+
+  // FIXME: Fix typings or move from caporal to commander
   cli
     .version(manifest.content.version)
     .command('migrate', '')
@@ -20,16 +22,16 @@ const main = async () => {
     .argument('<to>', '')
     .option('--migrationsDir <migrationsDir>', '')
     .option('--schemasDir <schemasDir>', '')
-    .option('--settings <settingsFilse>', '')
+    .option('--settings <settingsFile>', '')
     .option('--additional <additionalData>', '')
-    .action(migrate)
+    .action(migrate as any)
     .command('validate', '')
     .argument('<configPath', '')
     .argument('<schemaPath>', '')
-    .action(validate);
+    .action(validate as any);
 
   cli.parse(process.argv);
 };
 
-// eslint-disable-next-line no-console
+// eslint-disable-next-line unicorn/prefer-top-level-await
 main().catch(console.error);

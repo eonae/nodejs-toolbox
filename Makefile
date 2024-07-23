@@ -1,11 +1,11 @@
 full-rebuild:
 	rm -rf node_modules
-	lerna clean --yes
-	lerna exec -- rm -rf dist
-	lerna bootstrap --hoist
+	npx lerna@6 clean --yes
+	npx lerna@6 exec -- rm -rf dist
+	npx lerna@6 bootstrap --hoist
 	npm run build
 	npm run lint
 	npm run test
 
 publish:
-	lerna run publish-npm
+	npx lerna@6 run publish-npm

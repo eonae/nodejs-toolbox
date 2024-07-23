@@ -1,30 +1,26 @@
 import { SemanticVersion } from '@eonae/semantic-version';
-import {
-  Config,
-  MiConfSettings,
-  MigrationsSet,
-  SchemasSet,
-  CaporalLogger
-} from '../shared';
+
+import type { CaporalLogger } from '../shared';
+import { Config, MiConfSettings, MigrationsSet, SchemasSet } from '../shared';
 import { Logger } from '../shared/logging';
 
-export interface MigrateArguments {
+export type MigrateArguments = {
   configPath: string;
   from: string;
   to: string;
-}
+};
 
-export interface MigrateOptions {
+export type MigrateOptions = {
   migrationsDir?: string;
   schemasDir?: string;
   settingsFile?: string;
   additional?: Record<string, unknown>;
-}
+};
 
 export const migrate = async (
   args: MigrateArguments,
   opts: MigrateOptions,
-  logger: CaporalLogger
+  logger: CaporalLogger,
 ): Promise<void> => {
   Logger.set(logger);
 
@@ -39,9 +35,11 @@ export const migrate = async (
   const settings = await MiConfSettings.load(settingsFile);
 
   const schemas = await SchemasSet.load(schemasDir, settings);
+
   schemas.validateSufficiency(settings.supported);
 
   const migrations = await MigrationsSet.load(migrationsDir);
+
   migrations.validateSufficiency(settings.supported);
 
   const config = await Config.load(configPath);
@@ -49,6 +47,7 @@ export const migrate = async (
   await schemas.validate(config, from);
 
   const updated = await migrations.migrate(config, from, to);
+
   await schemas.validate(updated, to);
   await updated.save();
 };

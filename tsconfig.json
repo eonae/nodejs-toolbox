@@ -1,20 +1,6 @@
 {
+  "extends": "@rsdk/tsconfig/base.json",
   "compilerOptions": {
-    "lib": [
-      "es6"
-    ],
-    "module": "commonjs",
-    "target": "es6",
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "declaration": true,
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true,
-    "strictPropertyInitialization": false,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "baseUrl": "."
-  },
-  "types": ["node", "jest"]
+    "esModuleInterop": true
+  }
 }

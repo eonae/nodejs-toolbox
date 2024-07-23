@@ -1,5 +1,5 @@
-import simplegit from 'simple-git/promise';
 import { SemanticVersion } from '@eonae/semantic-version';
+import simplegit from 'simple-git';
 
 export type PrimaryTagsOptions = {
   release?: boolean;
@@ -9,9 +9,9 @@ export type PrimaryTagsOptions = {
 };
 
 export interface CaporalLogger {
-  debug (message: string): void;
-  info (message: string): void;
-  warn (message: string): void;
+  debug(message: string): void;
+  info(message: string): void;
+  warn(message: string): void;
   error(message: string): void;
 }
 
@@ -25,11 +25,19 @@ const git = simplegit(process.cwd());
 
 type FilterFunc<T> = (x: T) => boolean;
 
-export const tags = async (_: unknown, opts: TagsOptions, logger: CaporalLogger): Promise<void> => {
+const alwaysTrue: FilterFunc<string> = () => true;
+
+export const tags = async (
+  _: unknown,
+  opts: TagsOptions,
+  logger: CaporalLogger,
+): Promise<void> => {
   // validateOpts(opts);
 
-  const testRegexp = (regex: RegExp): FilterFunc<string> => x => regex.test(x);
-  const alwaysTrue: FilterFunc<string> = () => true;
+  const testRegexp =
+    (regex: RegExp): FilterFunc<string> =>
+    (x) =>
+      regex.test(x);
 
   const filterByRegexp: FilterFunc<string> = opts.filter
     ? testRegexp(new RegExp(opts.filter))
@@ -41,20 +49,26 @@ export const tags = async (_: unknown, opts: TagsOptions, logger: CaporalLogger)
     ? testRegexp(RELEASE_PATTERN)
     : alwaysTrue;
 
-  const found = (await git.tags()).all
-    .filter(x => filterByRegexp(x) && releaseOnly(x));
+  const { all } = await git.tags();
+  const filtered = all.filter((x) => filterByRegexp(x) && releaseOnly(x));
 
   if (!opts.last) {
-    logger.info(found.join(' '));
+    logger.info(filtered.join(' '));
     return;
   }
 
-  const latest = found
-    .map(x => new SemanticVersion(x))
-    .reduce((acc: SemanticVersion, x) => (!acc || x.isGreaterThan(acc) ? x : acc), null);
+  const latest = filtered
+    .map((x) => new SemanticVersion(x))
+    .reduce(
+      (acc: SemanticVersion | null, x) =>
+        !acc || x.isGreaterThan(acc) ? x : acc,
+      null,
+    );
 
   if (!latest) {
-    throw Error('No tags found with specified filter. So there are no --last.');
+    throw new Error(
+      'No tags found with specified filter. So there are no --last.',
+    );
   }
 
   logger.info(latest.toString());

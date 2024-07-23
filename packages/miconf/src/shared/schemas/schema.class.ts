@@ -1,36 +1,39 @@
 /* eslint-disable no-console */
 
+import { readObj } from '@rsdk/common.node';
+import type { ErrorObject } from 'ajv';
 import Ajv from 'ajv';
+import { isAbsolute, join } from 'node:path';
 
-import { isAbsolute, join } from 'path';
-import { readObj } from '@eonae/common';
-import { Config } from '../config.class';
+import type { Config } from '../config.class';
+import { Logger } from '../logging';
 import { MiConfSettings } from '../miconf.settings';
-import { Logger } from '..';
 
-export class Schema<T = unknown> {
-  private constructor (
+export class Schema<
+  T extends Record<string, unknown> = Record<string, unknown>,
+> {
+  private constructor(
     public readonly content: T,
-    public settings: MiConfSettings
-  ) { }
+    public settings: MiConfSettings,
+  ) {}
 
-  public static async load<K = unknown> (
-    path: string,
-    settings?: MiConfSettings
-  ): Promise<Schema<K>> {
+  public static async load<
+    K extends Record<string, unknown> = Record<string, unknown>,
+  >(path: string, settings?: MiConfSettings): Promise<Schema<K>> {
     const fullpath = isAbsolute(path) ? path : join(process.cwd(), path);
+
     return new Schema(
-      await readObj(fullpath) as K,
-      settings || await MiConfSettings.load()
+      (await readObj(fullpath)) as K,
+      settings || (await MiConfSettings.load()),
     );
   }
 
-  public async validate (config: Config<T>): Promise<unknown[]> {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const validate = new Ajv(this.settings.ajv).compile(this.content as any);
+  public async validate(config: Config<T>): Promise<ErrorObject[] | null> {
+    const validate = new Ajv(this.settings.ajv).compile(this.content);
+
     Logger.info('Validating against schema...');
 
-    await validate(config.content);
-    return validate.errors;
+    validate(config.content);
+    return validate.errors ?? null;
   }
 }

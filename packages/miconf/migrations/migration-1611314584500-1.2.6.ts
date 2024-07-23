@@ -4,7 +4,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { SemanticVersion } from '@eonae/semantic-version';
-import { ConfigMigration } from '../src/shared';
+
+import type { ConfigMigration } from '../src/shared';
 
 export default class Migration1611314584499_1_2_6 implements ConfigMigration {
   from = new SemanticVersion('1.2.5');

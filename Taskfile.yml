@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+
+tasks:
+  default:
+    yarn --immutable
+
+  build:
+    desc: Install packages and build project
+    deps:
+      - default
+    cmd: lerna run build
+
+  test:
+    desc: Run all tests
+    cmd: yarn test
+    
+  init:
+    desc: Initialize project. Run this when just cloned repository
+    cmds:
+      - task: build
+      - task: test
+

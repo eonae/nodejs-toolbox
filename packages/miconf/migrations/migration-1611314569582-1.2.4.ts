@@ -4,7 +4,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { SemanticVersion } from '@eonae/semantic-version';
-import { ConfigMigration } from '../src/shared';
+
+import type { ConfigMigration } from '../src/shared';
 
 const DEFAULT_NAME = 'DEFAULT_NAME';
 
@@ -15,16 +16,16 @@ export default class Migration1611314569582_1_2_4 implements ConfigMigration {
 
   to = new SemanticVersion('1.2.4');
 
-  up (prev: any): any {
+  up(prev: any): any {
     return {
       version: prev.version,
-      name: DEFAULT_NAME
+      name: DEFAULT_NAME,
     };
   }
 
-  down (next: any): any {
+  down(next: any): any {
     return {
-      version: next.version
+      version: next.version,
     };
   }
 }

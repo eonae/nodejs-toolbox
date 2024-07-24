@@ -18,7 +18,7 @@ export class Config<
   >(path: string): Promise<Config<K>> {
     const fullpath = isAbsolute(path) ? path : join(process.cwd(), path);
 
-    Logger.info(`Loading source file from ${fullpath}`);
+    Logger.info(`⏳ Loading source file from ${fullpath}`);
     const content = await readObj(fullpath);
 
     return new Config(fullpath, content as K);

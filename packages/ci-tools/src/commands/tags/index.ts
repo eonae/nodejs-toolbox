@@ -53,6 +53,7 @@ export const tags = async (
   const filtered = all.filter((x) => filterByRegexp(x) && releaseOnly(x));
 
   if (!opts.last) {
+    // FIXME: output
     logger.info(filtered.join(' '));
     return;
   }
@@ -71,6 +72,7 @@ export const tags = async (
     );
   }
 
+  // TODO: output
   logger.info(latest.toString());
 
   // if git tag is already set that means that commit has no sense.

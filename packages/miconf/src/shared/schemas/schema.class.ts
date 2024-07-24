@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { readObj } from '@rsdk/common.node';
 import type { ErrorObject } from 'ajv';
 import Ajv from 'ajv';
@@ -31,7 +29,7 @@ export class Schema<
   public async validate(config: Config<T>): Promise<ErrorObject[] | null> {
     const validate = new Ajv(this.settings.ajv).compile(this.content);
 
-    Logger.info('Validating against schema...');
+    Logger.info('⏳ Validating against schema...');
 
     validate(config.content);
     return validate.errors ?? null;

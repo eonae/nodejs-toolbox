@@ -1,5 +1,4 @@
 /* eslint-disable max-classes-per-file */
-/* eslint-disable no-console */
 import type { SemanticVersion } from '@eonae/semantic-version';
 
 import type { Config } from '../config.class';
@@ -52,7 +51,7 @@ export class ConfigMigrationWrapper<Prev = any, Next = any> {
         ? (x: Prev): Next => this.inner.up(x)
         : (x: Next): Prev => this.inner.down(x);
 
-    Logger.info(`Applying migration ${this.toString(direction)}...`);
+    Logger.info(`⏳ Applying migration ${this.toString(direction)}...`);
 
     // FIXME: typings
     const updated = await config.apply(transformation as any);

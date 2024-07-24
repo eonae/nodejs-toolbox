@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import type { SemanticVersion } from '@eonae/semantic-version';
 import { promises as fs } from 'node:fs';
 import { isAbsolute, join } from 'node:path';
@@ -22,7 +20,7 @@ export class SchemasSet {
   ): Promise<SchemasSet> {
     const fulldir = isAbsolute(dir) ? dir : join(process.cwd(), dir);
 
-    Logger.info(`Loading validation schemas from directory: ${fulldir}`);
+    Logger.info(`⏳ Loading validation schemas from directory: ${fulldir}`);
     const files = await fs.readdir(fulldir);
     const schemaFiles = files.filter((x) => SCHEMAS_FILE_PATTERN.test(x));
 
@@ -80,6 +78,6 @@ export class SchemasSet {
       throw new MissingSchemasError(noSchema);
     }
 
-    Logger.info('Schemas set validated successfully!');
+    Logger.info('✅ Schemas set validated successfully!');
   }
 }

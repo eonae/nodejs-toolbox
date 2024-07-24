@@ -1,8 +1,5 @@
 #!/usr/bin/env node
-/* eslint-disable max-len */
-
-// There is no harm to pass async functions to action()
-/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable prettier/prettier */
 
 import { Manifest } from '@eonae/project-tools';
 import cli from 'caporal';
@@ -53,23 +50,14 @@ $ ci-tools bump --section minor --original 1.2.3`,
       '--current <current>',
       'Current version. If provided will not need package.json to get current version.',
     )
-    .option(
-      '--original <original>',
-      'Original version will cause skipping bump it it`s already bumped',
-    )
+    .option('--original <original>', 'Original version will cause skipping bump it it`s already bumped')
     .option('--prefix <prefix>', 'Will set specified prefix and increment = 0.')
     .option('--release', 'Will remove prefix and increment.')
     .option('--dropIncrement', 'Will drop increment section.')
     .option('--noTag', 'Skip creating git tags.')
-    .option(
-      '--noManifestsUpdate',
-      'Skip updating version in package.json and lock-file.',
-    )
-    .option('--noCommit', 'Skip commiting. Will apply --noTag automatically.')
-    .option(
-      '--tagPattern <tagPattern>',
-      'Specify pattern for annotated tags. Like: "release-{{version}}"',
-    )
+    .option('--dryRun', 'Just print bumped version to output')
+    .option('--noCommit', 'Skip committing. Will apply --noTag automatically.')
+    .option('--tagPattern <tagPattern>', 'Specify pattern for annotated tags. Like: "release-{{version}}"')
     .action(bump)
 
     .command('tags', 'Gets git tags')
@@ -82,6 +70,7 @@ $ ci-tools bump --section minor --original 1.2.3`,
 
   cli.parse(process.argv);
 };
+
 
 // eslint-disable-next-line unicorn/prefer-top-level-await
 main().catch(console.error);

@@ -117,7 +117,8 @@ export class SemanticVersion {
     if (this.semantic.patch < version.semantic.patch) return false;
     if (!this.prerelease && version.prerelease) return true;
     if (this.prerelease && !version.prerelease) return true;
-    if (this.prerelease!.increment > version.prerelease!.increment) return true;
+    if (!this.prerelease || !version.prerelease) return false;
+    if (this.prerelease.increment > version.prerelease.increment) return true;
     return false;
   }
 }

@@ -1,12 +1,18 @@
 import { Manifest } from '@eonae/project-tools';
 import type { Diff, Section } from '@eonae/semantic-version';
 import { SemanticVersion } from '@eonae/semantic-version';
+import { text } from '@rsdk/common';
 import crb from 'conventional-recommended-bump';
 import { promisify } from 'node:util';
 import simplegit from 'simple-git';
 
 import { diff, isGreaterThan } from './diff.functions';
-import type { BumpOptions, CaporalLogger, PrimaryOptions } from './types';
+import type {
+  BumpOptions,
+  CaporalLogger,
+  CurrentVersionSource,
+  PrimaryOptions,
+} from './types';
 
 const recommend = promisify(crb);
 
@@ -40,14 +46,14 @@ export const validateOpts = (opts: BumpOptions): void => {
 
 export const getCurrentVersion = async ({
   current,
-}: BumpOptions): Promise<SemanticVersion> => {
+}: BumpOptions): Promise<[SemanticVersion, CurrentVersionSource]> => {
   if (current) {
-    return new SemanticVersion(current);
+    return [new SemanticVersion(current), 'option'];
   }
 
   const { content } = await Manifest.load(process.cwd());
 
-  return new SemanticVersion(content.version);
+  return [new SemanticVersion(content.version), 'manifest'];
 };
 
 export const updateManifests = async (
@@ -98,13 +104,13 @@ export const bump = async (
 ): Promise<void> => {
   validateOpts(opts);
 
-  const curr = await getCurrentVersion(opts);
+  const [curr, source] = await getCurrentVersion(opts);
 
-  logger.info(`Current version: ${curr.toString()}`);
+  logger.debug(`ℹ️ Current version: ${curr.toString()} (from: ${source})`);
 
   const section = await getSectionToBump(opts.section);
 
-  logger.info(`Bump section: ${section}`);
+  logger.debug(`ℹ️ Bump section: ${section}`);
 
   const bumped = getBumped(curr, section, opts);
 
@@ -114,18 +120,24 @@ export const bump = async (
 
   // FIXME: Make prefix a part of comparison?
   if (!hasChanged) {
-    logger.info("Version didn't change.");
+    logger.debug("❗️Version didn't change.");
     return;
   }
 
-  if (!('noManifestsUpdate' in opts) || !opts.noManifestsUpdate) {
-    logger.info('Updating manifests... (only root for now)');
-    await updateManifests(bumped);
-    logger.info(`Updated: ${curr.toString()} -> ${bumped.toString()}`);
+  logger.debug(`ℹ️ Bumping to version: ${bumped.toString()}`);
+
+  if (opts.dryRun) {
+    // TODO: output(...), чтобы
+    logger.info(bumped.toString());
+    return;
   }
 
+  logger.debug('⏳ Updating manifests... (only root for now)');
+  await updateManifests(bumped);
+  logger.debug(`✅ Updated: ${curr.toString()} -> ${bumped.toString()}`);
+
   if (!opts.noCommit) {
-    logger.debug('Committing...');
+    logger.debug('⏳ Committing...');
     await git.add('.');
     await git.commit(`chore(bump): ${bumped.toString()}`);
     if (!opts.noTag) {
@@ -133,15 +145,14 @@ export const bump = async (
         ? opts.tagPattern.replace('{{version}}', bumped.toString())
         : bumped.toString();
 
-      logger.debug(`Creating tag: ${tag}`);
+      logger.debug(`⏳ Creating tag: ${tag}`);
       try {
         await git.addAnnotatedTag(tag, `version ${bumped.toString()}`);
       } catch (error: any) {
-        logger.error(error.message);
-        logger.info(
-          'As chore commit has succeeded and tagging failed you' +
-            'probably need to reset last commit manually',
-        );
+        logger.error(`❌ ${error.message}`);
+        logger.error(text`
+          ❌ As chore commit has succeeded and tagging failed you
+          probably need to reset last commit manually`);
       }
     }
   }

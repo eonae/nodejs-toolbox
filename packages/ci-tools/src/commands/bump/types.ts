@@ -14,7 +14,7 @@ export type PrimaryOptions = {
 
 export type SecondaryOptions = {
   noTag?: boolean;
-  noManifestsUpdate?: boolean;
+  dryRun?: boolean;
   noCommit?: string;
   tagPattern?: string;
 };
@@ -27,3 +27,5 @@ export interface CaporalLogger {
 }
 
 export type BumpOptions = SectionOptions & PrimaryOptions & SecondaryOptions;
+
+export type CurrentVersionSource = 'manifest' | 'option' | 'tag';

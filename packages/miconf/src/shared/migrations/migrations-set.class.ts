@@ -28,7 +28,7 @@ export class MigrationsSet {
   public static async load(dir = 'migrations'): Promise<MigrationsSet> {
     const fulldir = isAbsolute(dir) ? dir : join(process.cwd(), dir);
 
-    Logger.info(`Loading migrations from directory: ${fulldir}`);
+    Logger.info(`⏳ Loading migrations from directory: ${fulldir}`);
     const files = await fs.readdir(fulldir);
     const migrationFiles = files.filter((x) => MIGRATION_FILE_PATTERN.test(x));
 

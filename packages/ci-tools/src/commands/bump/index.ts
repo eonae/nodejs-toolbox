@@ -46,14 +46,41 @@ export const validateOpts = (opts: BumpOptions): void => {
 
 export const getCurrentVersion = async ({
   current,
+  tagPattern,
 }: BumpOptions): Promise<[SemanticVersion, CurrentVersionSource]> => {
-  if (current) {
-    return [new SemanticVersion(current), 'option'];
+  if (!current) {
+    const { content } = await Manifest.load(process.cwd());
+
+    return [new SemanticVersion(content.version), 'manifest'];
   }
 
-  const { content } = await Manifest.load(process.cwd());
+  if (current === 'TAG') {
+    const { latest: tag } = await git.tags();
+    if (!tag) {
+      throw new Error(
+        '❌ There are no tags to get version from (--current = TAG)',
+      );
+    }
 
-  return [new SemanticVersion(content.version), 'manifest'];
+    if (!tagPattern) {
+      return [new SemanticVersion(tag), 'tag'];
+    }
+
+    const regex = new RegExp(
+      `^${tagPattern.replace('{{version}}', '(\\d{1,5}\\.\\d{1,5}\\.\\d{1,5})')}$`,
+    );
+
+    const [, version] = tag.match(regex) ?? [];
+    if (!version) {
+      throw new Error(
+        `Can't parse version from tag: ${tag} (using pattern ${tagPattern})`,
+      );
+    }
+
+    return [new SemanticVersion(version), 'tag'];
+  }
+
+  return [new SemanticVersion(current), 'option'];
 };
 
 export const updateManifests = async (
@@ -129,6 +156,8 @@ export const bump = async (
   if (opts.dryRun) {
     // TODO: output(...), чтобы
     logger.info(bumped.toString());
+
+    // TODO: Можно не выводить версию если стоит --verbose
     return;
   }
 

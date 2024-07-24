@@ -1,6 +1,6 @@
 {
   "name": "@eonae/miconf",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "CLI",
   "main": "dist/index.js",
   "bin": "dist/cli.js",
@@ -16,8 +16,8 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@eonae/project-tools": "^1.0.3",
-    "@eonae/semantic-version": "^1.0.3",
+    "@eonae/project-tools": "^1.1.0",
+    "@eonae/semantic-version": "^1.1.0",
     "@rsdk/common": "^5.0.2",
     "@rsdk/common.node": "^5.0.2",
     "ajv": "^8.17.1",

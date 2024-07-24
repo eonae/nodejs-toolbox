@@ -1,6 +1,6 @@
 {
   "name": "@eonae/ci-tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI",
   "main": "dist/index.js",
   "bin": "dist/index.js",
@@ -16,8 +16,8 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@eonae/project-tools": "workspace:^",
-    "@eonae/semantic-version": "workspace:^",
+    "@eonae/project-tools": "^1.0.1",
+    "@eonae/semantic-version": "^1.0.1",
     "@rsdk/common": "^5.0.2",
     "caporal": "^1.4.0",
     "conventional-changelog-angular": "^8.0.0",
@@ -33,5 +33,6 @@
     "@types/shelljs": "^0.8.15"
   },
   "author": "Sergey Aslanov",
-  "license": "ISC"
+  "license": "ISC",
+  "gitHead": "50c9e4d8f267e8e9667639b00fee9569f9ec98c8"
 }

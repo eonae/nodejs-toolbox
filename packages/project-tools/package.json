@@ -1,6 +1,6 @@
 {
   "name": "@eonae/project-tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI",
   "main": "dist/index.js",
   "files": [
@@ -18,5 +18,6 @@
     "@rsdk/common.node": "^5.0.2"
   },
   "author": "Sergey Aslanov",
-  "license": "ISC"
+  "license": "ISC",
+  "gitHead": "50c9e4d8f267e8e9667639b00fee9569f9ec98c8"
 }

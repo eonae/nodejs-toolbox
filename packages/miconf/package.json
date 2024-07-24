@@ -1,6 +1,6 @@
 {
   "name": "@eonae/miconf",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI",
   "main": "dist/index.js",
   "bin": "dist/cli.js",
@@ -16,8 +16,8 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@eonae/project-tools": "workspace:^",
-    "@eonae/semantic-version": "workspace:^",
+    "@eonae/project-tools": "^1.0.1",
+    "@eonae/semantic-version": "^1.0.1",
     "@rsdk/common": "^5.0.2",
     "@rsdk/common.node": "^5.0.2",
     "ajv": "^8.17.1",
@@ -25,5 +25,6 @@
     "lodash": "4.17.21"
   },
   "author": "Sergey Aslanov",
-  "license": "ISC"
+  "license": "ISC",
+  "gitHead": "50c9e4d8f267e8e9667639b00fee9569f9ec98c8"
 }

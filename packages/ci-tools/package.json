@@ -33,6 +33,5 @@
     "@types/shelljs": "^0.8.15"
   },
   "author": "Sergey Aslanov",
-  "license": "ISC",
-  "gitHead": "50c9e4d8f267e8e9667639b00fee9569f9ec98c8"
+  "license": "ISC"
 }

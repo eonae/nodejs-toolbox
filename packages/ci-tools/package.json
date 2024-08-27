@@ -21,7 +21,7 @@
     "@rsdk/common": "^5.0.2",
     "caporal": "^1.4.0",
     "conventional-changelog-angular": "^7.0.0",
-    "conventional-recommended-bump": "^6.0.0",
+    "conventional-recommended-bump": "^8.0.0",
     "simple-git": "^3.25.0"
   },
   "devDependencies": {
